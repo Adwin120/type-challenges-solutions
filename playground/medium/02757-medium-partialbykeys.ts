@@ -26,7 +26,13 @@
 
 /* _____________ Your Code Here _____________ */
 
-type PartialByKeys<T, K> = any
+type MyPartial<T, K> = {
+  [P in keyof T as P extends K ? P : never]?: T[P]
+}
+
+type PartialByKeys<T, K extends keyof T> = MyPartial<T, K>
+
+type t = PartialByKeys<User, 'name'>
 
 /* _____________ Test Cases _____________ */
 import type { Equal, Expect } from '@type-challenges/utils'

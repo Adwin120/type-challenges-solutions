@@ -23,7 +23,13 @@
 
 /* _____________ Your Code Here _____________ */
 
-type ObjectEntries<T> = any
+type _ObjectEntries<T> = {
+  [P in keyof T]: [P, T[P]]
+}[keyof T]
+
+type ObjectEntries<T> = _ObjectEntries<Required<T>>
+
+type t = ObjectEntries<{ key?: undefined }>
 
 /* _____________ Test Cases _____________ */
 import type { Equal, Expect } from '@type-challenges/utils'

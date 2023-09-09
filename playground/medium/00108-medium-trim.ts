@@ -18,13 +18,14 @@
 
 /* _____________ Your Code Here _____________ */
 
-type TrimRight<S extends string> = S extends `${infer Rest}${WhiteSpace}` ? TrimRight<Rest> : S
+
 
 type Trim<S extends string> = TrimLeft<TrimRight<S>>
 
 /* _____________ Test Cases _____________ */
 import type { Equal, Expect } from '@type-challenges/utils'
 import type { TrimLeft, WhiteSpace } from './00106-medium-trim-left'
+import { TrimRight } from './04803-medium-trim-right'
 
 type cases = [
   Expect<Equal<Trim<'str'>, 'str'>>,

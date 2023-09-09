@@ -24,10 +24,24 @@
 
 /* _____________ Your Code Here _____________ */
 
-type KebabCase<S> = any
+type UpperCaseLetters =  StringToArray<'ABCDEFGHIJKLMNOPQRSTUVWXYZ'>[number]
+
+type KebabCaseRec<S extends string> = S extends `${infer Head}${infer Tail}` 
+  ? Head extends UpperCaseLetters
+    ? `-${Lowercase<Head>}${KebabCaseRec<Tail>}`
+    : `${Head}${KebabCaseRec<Tail>}`
+  : ""
+
+type StripFirstDash<S extends string> = S extends `-${infer Rest}` ? Rest : S
+
+type KebabCase<S extends string> = LengthOfString<S> extends 1 ? KebabCaseRec<S> : StripFirstDash<KebabCaseRec<S>>
+
+type t = KebabCase<'-'>
 
 /* _____________ Test Cases _____________ */
 import type { Equal, Expect } from '@type-challenges/utils'
+import { ReplaceAll } from './00119-medium-replaceall'
+import { LengthOfString, StringToArray } from './00298-medium-length-of-string'
 
 type cases = [
   Expect<Equal<KebabCase<'FooBarBaz'>, 'foo-bar-baz'>>,

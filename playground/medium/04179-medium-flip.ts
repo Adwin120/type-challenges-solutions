@@ -19,8 +19,11 @@
 */
 
 /* _____________ Your Code Here _____________ */
+export type TSStringConvertable = string | number | boolean | bigint | null | undefined
 
-type Flip<T> = any
+type Flip<T extends Record<string , TSStringConvertable>> = {
+  [P in keyof T as `${T[P]}`]: P
+}
 
 /* _____________ Test Cases _____________ */
 import type { Equal, Expect, NotEqual } from '@type-challenges/utils'

@@ -18,10 +18,15 @@
 
 /* _____________ Your Code Here _____________ */
 
-type Trunc = any
+type Trunc<T extends TSStringConvertable> = `${T}` extends `.${string}` 
+  ? '0'
+  : `${T}` extends `${infer Truncated}.${string}`
+    ? Truncated
+    : `${T}`
 
 /* _____________ Test Cases _____________ */
 import type { Equal, Expect } from '@type-challenges/utils'
+import { TSStringConvertable } from './04179-medium-flip'
 
 type cases = [
   Expect<Equal<Trunc<0.1>, '0'>>,

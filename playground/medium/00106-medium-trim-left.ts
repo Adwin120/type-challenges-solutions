@@ -18,8 +18,8 @@
 
 /* _____________ Your Code Here _____________ */
 
-type WhiteSpace = ' ' | '\n' | '\t'
-type TrimLeft<S extends string> = S extends `${WhiteSpace}${infer Rest}` ? TrimLeft<Rest> : S
+export type WhiteSpace = ' ' | '\n' | '\t'
+export type TrimLeft<S extends string> = S extends `${WhiteSpace}${infer Rest}` ? TrimLeft<Rest> : S
 
 /* _____________ Test Cases _____________ */
 import type { Equal, Expect } from '@type-challenges/utils'

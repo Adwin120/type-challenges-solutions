@@ -26,8 +26,11 @@
 */
 
 /* _____________ Your Code Here _____________ */
+type MyRequired<T, K> = {
+  [P in keyof T as P extends K ? P : never]-?: T[P]
+}
 
-type RequiredByKeys<T, K> = any
+type RequiredByKeys<T, K extends keyof T> = MyRequired<T,K> & Omit<T,K>
 
 /* _____________ Test Cases _____________ */
 import type { Equal, Expect } from '@type-challenges/utils'

@@ -12,9 +12,9 @@
 
 /* _____________ Your Code Here _____________ */
 
-type LengthOfString<S extends string> = StringToArray<S>['length']
+export type LengthOfString<S extends string> = StringToArray<S>['length']
 
-type StringToArray<S extends string> = S extends `${infer Head}${infer Tail}`
+export type StringToArray<S extends string> = S extends `${infer Head}${infer Tail}`
   ? [Head, ...StringToArray<Tail>]
   : []
 

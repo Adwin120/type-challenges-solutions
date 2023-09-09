@@ -20,10 +20,17 @@
 
 /* _____________ Your Code Here _____________ */
 
-type IsUnion<T> = any
+type IsUnion<T, I=T> = IsNever<T> extends true 
+  ? false 
+  : T extends I 
+    ? Equal<T, I> extends true 
+      ? false 
+      : true 
+    : never
 
 /* _____________ Test Cases _____________ */
 import type { Equal, Expect } from '@type-challenges/utils'
+import { IsNever } from './01042-medium-isnever'
 
 type cases = [
   Expect<Equal<IsUnion<string>, false>>,

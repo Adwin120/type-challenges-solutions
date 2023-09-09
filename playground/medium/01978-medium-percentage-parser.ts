@@ -30,9 +30,28 @@
   > View on GitHub: https://tsch.js.org/1978
 */
 
-/* _____________ Your Code Here _____________ */
+import { StringToArray } from "./00298-medium-length-of-string"
 
-type PercentageParser<A extends string> = any
+/* _____________ Your Code Here _____________ */
+type Digit = StringToArray<'0123456789'>[number]
+type IsNumberString<S extends string> = S extends `${string}` 
+  ? S extends `${Digit}${infer Rest}` 
+    ? IsNumberString<Rest>
+    : false
+  : true
+
+type PercentageParser<A extends string> = A extends `${Digit}${string}`
+  ? A extends `${infer N}%` 
+    ? ['', N, '%'] 
+    : ['', A, '']
+  : A extends `${infer Prefix}${infer N}%` 
+    ? [Prefix, N, '%']
+    : A extends `${infer Prefix}${infer N}` 
+      ? [Prefix, N, ''] 
+      : ['', '', '']
+
+
+type t = PercentageParser<'+'>
 
 /* _____________ Test Cases _____________ */
 import type { Equal, Expect } from '@type-challenges/utils'

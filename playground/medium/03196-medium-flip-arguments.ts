@@ -19,9 +19,13 @@
   > View on GitHub: https://tsch.js.org/3196
 */
 
+import { Reverse } from "./03192-medium-reverse"
+
 /* _____________ Your Code Here _____________ */
 
-type FlipArguments<T> = any
+type FlipArguments<T extends Function> = T extends (...args: infer Args) => infer R
+  ? (...args: Reverse<Args>) => R
+  : never
 
 /* _____________ Test Cases _____________ */
 import type { Equal, Expect } from '@type-challenges/utils'

@@ -18,8 +18,9 @@
 */
 
 /* _____________ Your Code Here _____________ */
+import type { StringToArray } from './00298-medium-length-of-string'
 
-type StringToUnion<T extends string> = any
+type StringToUnion<T extends string> = StringToArray<T>[number]
 
 /* _____________ Test Cases _____________ */
 import type { Equal, Expect } from '@type-challenges/utils'
