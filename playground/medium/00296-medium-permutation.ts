@@ -17,12 +17,11 @@
 /* _____________ Your Code Here _____________ */
 
 type Permutation<T, I = T> = [T] extends [never] ? [] : T extends I
-  ? [T, ...Permutation<MyExclude<I, T>>]
+  ? [T, ...Permutation<Exclude<I, T>>]
   : never
 
 /* _____________ Test Cases _____________ */
 import type { Equal, Expect } from '@type-challenges/utils'
-import type { MyExclude } from '../easy/00043-easy-exclude'
 
 type cases = [
   Expect<Equal<Permutation<'A'>, ['A']>>,

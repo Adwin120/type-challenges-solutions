@@ -19,7 +19,7 @@
 
 /* _____________ Your Code Here _____________ */
 
-export type Reverse<T extends unknown[]> = T extends [infer Head, ...infer Tail]
+type Reverse<T extends unknown[]> = T extends [infer Head, ...infer Tail]
   ? [...Reverse<Tail>, Head]
   : []
 

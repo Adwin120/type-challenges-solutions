@@ -18,7 +18,7 @@
 */
 
 /* _____________ Your Code Here _____________ */
-type Falsy = 0 | '' | false | [] | Record<string, never> | undefined | null
+import type { Falsy } from '../../utils/utils'
 
 type AnyOf<T extends readonly unknown[]> = T[number] extends Falsy ? false : true
 

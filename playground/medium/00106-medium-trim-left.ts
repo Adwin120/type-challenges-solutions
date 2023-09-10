@@ -17,9 +17,8 @@
 */
 
 /* _____________ Your Code Here _____________ */
-
-export type WhiteSpace = ' ' | '\n' | '\t'
-export type TrimLeft<S extends string> = S extends `${WhiteSpace}${infer Rest}` ? TrimLeft<Rest> : S
+import type { Whitespace } from '../../utils/utils'
+export type TrimLeft<S extends string> = S extends `${Whitespace}${infer Rest}` ? TrimLeft<Rest> : S
 
 /* _____________ Test Cases _____________ */
 import type { Equal, Expect } from '@type-challenges/utils'

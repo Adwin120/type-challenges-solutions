@@ -12,7 +12,11 @@
 
 /* _____________ Your Code Here _____________ */
 
-type Integer<T> = any
+type Integer<T extends number> = Equal<T, number> extends true
+  ? never
+  : `${T}` extends `${string}.${string}`
+    ? never
+    : T
 
 /* _____________ Test Cases _____________ */
 import type { Equal, Expect } from '@type-challenges/utils'

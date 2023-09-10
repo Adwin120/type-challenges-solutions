@@ -23,8 +23,6 @@ type AppendToObject<T, U extends PropertyKey, V> = {
   [P in keyof T | U]: P extends keyof T ? T[P] : V
 }
 
-type t = AppendToObject<test1, 'home', boolean>
-
 /* _____________ Test Cases _____________ */
 import type { Equal, Expect } from '@type-challenges/utils'
 

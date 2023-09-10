@@ -40,8 +40,8 @@ type t = KebabCase<'-'>
 
 /* _____________ Test Cases _____________ */
 import type { Equal, Expect } from '@type-challenges/utils'
-import { ReplaceAll } from './00119-medium-replaceall'
-import { LengthOfString, StringToArray } from './00298-medium-length-of-string'
+import type { StringToArray } from '../../utils/utils'
+import { LengthOfString } from './00298-medium-length-of-string'
 
 type cases = [
   Expect<Equal<KebabCase<'FooBarBaz'>, 'foo-bar-baz'>>,

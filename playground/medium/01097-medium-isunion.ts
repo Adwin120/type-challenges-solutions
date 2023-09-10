@@ -30,7 +30,7 @@ type IsUnion<T, I=T> = IsNever<T> extends true
 
 /* _____________ Test Cases _____________ */
 import type { Equal, Expect } from '@type-challenges/utils'
-import { IsNever } from './01042-medium-isnever'
+import { IsNever } from '../../utils/utils'
 
 type cases = [
   Expect<Equal<IsUnion<string>, false>>,

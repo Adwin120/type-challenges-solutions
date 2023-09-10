@@ -14,12 +14,9 @@
 
 export type LengthOfString<S extends string> = StringToArray<S>['length']
 
-export type StringToArray<S extends string> = S extends `${infer Head}${infer Tail}`
-  ? [Head, ...StringToArray<Tail>]
-  : []
-
 /* _____________ Test Cases _____________ */
 import type { Equal, Expect } from '@type-challenges/utils'
+import { StringToArray } from '../../utils/utils'
 
 type cases = [
   Expect<Equal<LengthOfString<''>, 0>>,

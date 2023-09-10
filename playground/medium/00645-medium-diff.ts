@@ -19,13 +19,7 @@ type XorProp<P, O, O1> =
     : P 
   : P
 
-// TODO: this could be reused in many previous answers
-type IndexEither<P extends keyof O | keyof O1, O, O1> = 
-  P extends keyof O 
-  ? O[P] 
-  : P extends keyof O1 
-    ? O1[P] 
-    : never
+import type { IndexEither } from '../../utils/utils'
 
 type Diff<O, O1> = {
   [P in keyof O | keyof O1 as XorProp<P, O, O1>]: IndexEither<P, O, O1>

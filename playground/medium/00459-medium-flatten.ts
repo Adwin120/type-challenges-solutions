@@ -24,7 +24,6 @@ type Flatten<T extends unknown[]> = T extends [infer Head, ...infer Tail]
     : [Head, ...Flatten<Tail>]
   : []
 
-type t = Flatten<[1, 2, [3, 4], [[[5]]]]>
 /* _____________ Test Cases _____________ */
 import type { Equal, Expect } from '@type-challenges/utils'
 

@@ -18,10 +18,22 @@
 
 /* _____________ Your Code Here _____________ */
 
-type IndexOf<T, U> = any
+type TakeTo<T extends unknown[], U> = T extends [infer Head, ...infer Tail]
+  ? Equal<Head, U> extends true
+    ? [Head]
+    : [Head, ...TakeTo<Tail, U>]
+  : []
 
+type _IndexOf<T extends unknown[] , TakenTo extends unknown[]> = TakenTo['length'] extends T['length']
+  ? -1
+  : Pop<TakenTo>['length']
+
+type IndexOf<T extends unknown[], U> = _IndexOf<T, TakeTo<T, U>>
+
+type t = TakeTo<[string, 'a'], 2>
 /* _____________ Test Cases _____________ */
 import type { Equal, Expect } from '@type-challenges/utils'
+import type { Pop } from '../../utils/utils'
 
 type cases = [
   Expect<Equal<IndexOf<[1, 2, 3], 2>, 1>>,

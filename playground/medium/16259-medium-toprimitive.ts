@@ -41,7 +41,7 @@ type ToPrimitive = any
 
 /* _____________ Test Cases _____________ */
 import type { Equal, Expect } from '@type-challenges/utils'
-
+// TODO: make a list of primitives as a union of types
 type PersonInfo = {
   name: 'Tom'
   age: 30

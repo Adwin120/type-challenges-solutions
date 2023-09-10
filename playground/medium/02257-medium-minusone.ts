@@ -18,11 +18,20 @@
 */
 
 /* _____________ Your Code Here _____________ */
+// TODO: use util push pop etc.
 
-type MinusOne<T extends number> = any
+type NumberToString<T extends number | string> = `${T}`
+type StringToNumber<T extends string> = T extends `${infer N extends number}` ? N : never
 
+
+type ShiftDigit = [-1, 0, 1, 2, 3, 4, 5, 6, 7, 8]
+
+type MinusOne<T extends number> = StringToNumber<ReverseString<ReverseString<NumberToString<T>> extends `${infer LastD extends number}${infer Rest}` ? `${ShiftDigit[LastD]}${Rest}` : ''>>
+
+type t = MinusOne<1101>
 /* _____________ Test Cases _____________ */
 import type { Equal, Expect } from '@type-challenges/utils'
+import { ReverseString } from '../../utils/utils'
 type cases = [
   Expect<Equal<MinusOne<1>, 0>>,
   Expect<Equal<MinusOne<55>, 54>>,

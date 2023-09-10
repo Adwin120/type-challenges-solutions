@@ -30,28 +30,17 @@
   > View on GitHub: https://tsch.js.org/1978
 */
 
-import { StringToArray } from "./00298-medium-length-of-string"
-
 /* _____________ Your Code Here _____________ */
-type Digit = StringToArray<'0123456789'>[number]
-type IsNumberString<S extends string> = S extends `${string}` 
-  ? S extends `${Digit}${infer Rest}` 
-    ? IsNumberString<Rest>
-    : false
-  : true
-
-type PercentageParser<A extends string> = A extends `${Digit}${string}`
-  ? A extends `${infer N}%` 
-    ? ['', N, '%'] 
-    : ['', A, '']
-  : A extends `${infer Prefix}${infer N}%` 
-    ? [Prefix, N, '%']
-    : A extends `${infer Prefix}${infer N}` 
-      ? [Prefix, N, ''] 
-      : ['', '', '']
 
 
-type t = PercentageParser<'+'>
+type DestructurePercentSign<A extends string> = A extends `${infer Rest}%`
+  ? [Rest, '%']
+  : [A, '']
+
+type PercentageParser<A extends string> = A extends `${infer Prefix extends '+' | '-'}${infer Rest}`
+? [Prefix, ...DestructurePercentSign<Rest>]
+: ['', ...DestructurePercentSign<A>]
+
 
 /* _____________ Test Cases _____________ */
 import type { Equal, Expect } from '@type-challenges/utils'

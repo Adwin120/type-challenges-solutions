@@ -23,10 +23,10 @@
 /* _____________ Your Code Here _____________ */
 
 // for some reason Promise is covariant while PromiseLike is contravariant
-// will need to investigate their definitions in TS
+// TODO: will need to investigate their definitions in TS
 type MyAwaitedGuard = PromiseLike<never> | Promise<unknown>
 
-export type MyAwaited<T extends MyAwaitedGuard> = T extends PromiseLike<infer U>
+type MyAwaited<T extends MyAwaitedGuard> = T extends PromiseLike<infer U>
   ? U extends MyAwaitedGuard
     ? MyAwaited<U>
     : U

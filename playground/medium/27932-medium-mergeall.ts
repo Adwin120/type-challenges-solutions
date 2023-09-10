@@ -22,10 +22,16 @@
 
 /* _____________ Your Code Here _____________ */
 
-type MergeAll<XS> = any
+type MergeAll<XS> = XS extends [infer Head, ...infer Tail]
+  ? MergeAll<Tail> extends infer MergedRest 
+    ? {[P in keyof Head | keyof MergedRest]: IndexMaybe<P, Head> | IndexMaybe<P, MergedRest>}
+    : never
+  : {}
 
+type t = MergeAll<[{ a: 1; b: 2 }, { a: 2 }, { c: 3 }]>
 /* _____________ Test Cases _____________ */
 import type { Equal, Expect } from '@type-challenges/utils'
+import { IndexEither, IndexMaybe } from '../../utils/utils';
 
 type cases = [
   Expect<Equal<MergeAll<[]>, {} >>,

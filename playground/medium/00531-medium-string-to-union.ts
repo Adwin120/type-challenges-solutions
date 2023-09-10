@@ -18,7 +18,7 @@
 */
 
 /* _____________ Your Code Here _____________ */
-import type { StringToArray } from './00298-medium-length-of-string'
+import type { StringToArray } from '../../utils/utils'
 
 type StringToUnion<T extends string> = StringToArray<T>[number]
 

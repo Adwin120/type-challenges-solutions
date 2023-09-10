@@ -23,8 +23,11 @@
 
 /* _____________ Your Code Here _____________ */
 
-type RemoveIndexSignature<T> = any
+type RemoveIndexSignature<T> = {
+  [P in keyof T]: T[P]
+}
 
+type t = keyof Foo
 /* _____________ Test Cases _____________ */
 import type { Equal, Expect } from '@type-challenges/utils'
 

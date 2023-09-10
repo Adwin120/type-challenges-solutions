@@ -19,12 +19,12 @@
   > View on GitHub: https://tsch.js.org/3196
 */
 
-import { Reverse } from "./03192-medium-reverse"
+import type { ReverseArray } from '../../utils/utils'
 
 /* _____________ Your Code Here _____________ */
 
 type FlipArguments<T extends Function> = T extends (...args: infer Args) => infer R
-  ? (...args: Reverse<Args>) => R
+  ? (...args: ReverseArray<Args>) => R
   : never
 
 /* _____________ Test Cases _____________ */

@@ -17,11 +17,10 @@
 */
 
 /* _____________ Your Code Here _____________ */
-
-export type TrimRight<S extends string> = S extends `${infer Rest}${WhiteSpace}` ? TrimRight<Rest> : S
+import type { Whitespace } from '../../utils/utils'
+export type TrimRight<S extends string> = S extends `${infer Rest}${Whitespace}` ? TrimRight<Rest> : S
 /* _____________ Test Cases _____________ */
 import type { Equal, Expect } from '@type-challenges/utils'
-import { WhiteSpace } from './00106-medium-trim-left'
 
 type cases = [
   Expect<Equal<TrimRight<'str'>, 'str'>>,
